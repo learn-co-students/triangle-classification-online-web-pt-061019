@@ -8,7 +8,7 @@ class Triangle
   end
 
   def kind
-    if @side1.size == 0 && @side2.size == 0 && @side3.size == 0
+    if @side1.size == nil && @side2.size == nil && @side3.size == nil
       begin
         raise TriangleError
       rescue TriangleError
