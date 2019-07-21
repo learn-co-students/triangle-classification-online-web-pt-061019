@@ -8,25 +8,21 @@ class Triangle
   end
 
   def kind
-    if @side1.size == nil && @side2.size == nil && @side3.size == nil
-      begin
-        raise TriangleError
-      rescue TriangleError
-        puts error.message
-      end
-    end
-    if @side1 == @side2 && @side2 == @side3
+    if @side1 <= 0 || @side2 <= 0 || @side3 <= 0
+      raise TriangleError
+    elsif @side1 + @side2 <= @side3 || @side1 + @side3 <= @side2 || @side2 + @side3 <= @side1
+      raise TriangleError
+    elsif @side1 == @side2 && @side2 == @side3
       :equilateral
     elsif (@side1 == @side2 && @side2 != @side3) || (@side2 == @side3 && @side2 != @side1) || (@side1 == @side3 && @side2 != @side3)
       :isosceles
-    else @side1 != @side2 && @side1 != @side3 && @side2 != @side3
+    else
       :scalene
     end
   end
 
   class TriangleError < StandardError
-    def message
-      "invalid triangle"
-    end
   end
 end
+
+# this is for scalene:  @side1 != @side2 && @side1 != @side3 && @side2 != @side3
